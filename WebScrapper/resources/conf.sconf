@@ -1,0 +1,19 @@
+=
+{name ->                Mon site}
+{url -> http://www.zeperfs.com/}
++
+{option1 -> value}
+{option2 -> value2}
+=
+{name -> Mon deuxieme site}
+{url -> Mon url}
++
+{option1 -> value}
+
+==
+{name -> Ma tache}
+{hour -> 3}
+{minute -> 0}
+{second -> 60}
++
+(Mon site, Mon deuxieme site)
