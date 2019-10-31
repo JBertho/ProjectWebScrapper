@@ -1,6 +1,41 @@
 #include "sources/headers/header.h"
 #include "sources/headers/structure.h"
 
+void test(char * name){
+
+    FILE * file = fopen("resources/text.txt","a+");
+    if(file != NULL){
+        fputs(name,file);
+        fclose(file);
+        printf("TEST\n");
+    }else{
+        printf("PROBLEME");
+    }
+
+}
+
+
+void cron(Task * listTasks,int taskCount){
+    for(int i = 0; i < taskCount; i++){
+        listTasks[i].lastParse = time(NULL);
+        printf("%li \n",listTasks[i].lastParse);
+        printf("%d \n",listTasks[i].total);
+    }
+    long timer = 0;
+    while(1){
+        timer = time(NULL);
+        for(int i = 0; i < taskCount; i++){
+
+            if(timer - listTasks[i].lastParse >= listTasks[i].total){
+                listTasks[i].lastParse = time(NULL);
+                test(listTasks[i].name);
+            }
+    }
+
+    }
+
+}
+
 int main()
 {
     FILE * configuration = fopen("resources/conf.sconf","r");
@@ -17,8 +52,10 @@ int main()
 
         if(strcmp(lineConf,"==") == 0 && strlen(lineConf) == 2)
             countTask += 1;
+
     }
     fseek(configuration,0,SEEK_SET);
+    printf("%d\n",countTask);
 
     int currentActions = 0;
     int currentTask = 0;
@@ -39,6 +76,10 @@ int main()
             currentTask++;
             currentStyle = 2;
             listTasks[currentTask-1].size = 0;
+            listTasks[currentTask-1].hour = 0;
+            listTasks[currentTask-1].minute = 0;
+            listTasks[currentTask-1].second = 0;
+            listTasks[currentTask-1].total = 0;
 
         }
         if(currentStyle == 1){
@@ -49,18 +90,8 @@ int main()
         }
 
     }
-    printf("%s\n",listTasks[0].name);
-    printf("%d\n",listTasks[0].hour);
-    printf("%d\n",listTasks[0].minute);
-    printf("%d\n",listTasks[0].second);
-    printf("%s\n",listTasks[0].actions[0]->url);
-    printf("%s\n",listTasks[0].actions[0]->options[0]);
-    printf("%s\n",listTasks[0].actions[0]->values[0]);
-    printf("%s\n",listTasks[0].actions[0]->options[1]);
-    printf("%s\n",listTasks[0].actions[0]->values[1]);
 
-
-    printf("\n\naction = %d tache = %d",countAction,countTask );
+    cron(listTasks,countTask);
 
     return 0;
 }

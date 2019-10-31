@@ -13,6 +13,7 @@ void setTaskHour(Task * tasks, char * line, int currentTask){
     if ( property != NULL){
         int hour = atoi(property);
         tasks[currentTask - 1].hour = hour;
+        tasks[currentTask - 1].total += (hour * 3600);
         free(property);
     }
 }
@@ -21,6 +22,7 @@ void setTaskMinute(Task * tasks, char * line, int currentTask){
     if ( property != NULL){
         int minute = atoi(property);
         tasks[currentTask - 1].minute = minute;
+        tasks[currentTask - 1].total += (minute * 60);
         free(property);
     }
 }
@@ -29,6 +31,7 @@ void setTaskSecond(Task * tasks, char * line, int currentTask){
     if ( property != NULL){
         int second = atoi(property);
         tasks[currentTask - 1].second = second;
+        tasks[currentTask - 1].total += second;
         free(property);
     }
 }
@@ -58,8 +61,6 @@ void setTaskActions(Task * listTasks,Actions * listActions,char * line, int curr
             for(int i = 0;i < actionsSize; i++){
                 if(strcmp(listActions[i].name,property) == 0){
                     addActionToTask(listTasks,&listActions[i],currentTasks);
-                    printf("%s  <- SA FONCTIONNE\n",listTasks[currentTasks - 1].actions[0]->options[0]);
-                    printf("%d\n",listTasks[currentTasks - 1].size);
                 }
             }
 
@@ -71,8 +72,6 @@ void setTaskActions(Task * listTasks,Actions * listActions,char * line, int curr
             for(int i = 0;i < actionsSize; i++){
                 if(strcmp(listActions[i].name,property) == 0){
                     addActionToTask(listTasks,&listActions[i],currentTasks);
-                    printf("%s  <- SA FONCTIONNE\n",listTasks[currentTasks - 1].actions[1]->url);
-                    printf("%d\n",listTasks[currentTasks - 1].size);
                 }
             }
 

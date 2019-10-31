@@ -123,3 +123,68 @@
 	"headers/header.h"
 	"headers/structure.h"
 
+1572438971 source:d:\cours esgi\3eme année\1er semestre\projets\projectwebscrapper\projectwebscrapper\webscrapper\sources\action.c
+	"headers/header.h"
+	"headers/structure.h"
+
+1572532089 d:\cours esgi\3eme année\1er semestre\projets\projectwebscrapper\projectwebscrapper\webscrapper\sources\headers\header.h
+	<stdio.h>
+	<stdlib.h>
+	"curl.h"
+	"structure.h"
+	<ctype.h>
+	<time.h>
+
+1516611310 d:\cours esgi\3eme année\1er semestre\projets\projectwebscrapper\projectwebscrapper\webscrapper\ext\curl\include\curl.h
+	"curlver.h"
+	"system.h"
+	<stdio.h>
+	<limits.h>
+	<osreldate.h>
+	<sys/types.h>
+	<time.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/select.h>
+	<sys/socket.h>
+	<sys/time.h>
+	<support/SupportDefs.h>
+	"easy.h"
+	"multi.h"
+	"typecheck-gcc.h"
+
+1516777485 d:\cours esgi\3eme année\1er semestre\projets\projectwebscrapper\projectwebscrapper\webscrapper\ext\curl\include\curlver.h
+
+1516611310 d:\cours esgi\3eme année\1er semestre\projets\projectwebscrapper\projectwebscrapper\webscrapper\ext\curl\include\system.h
+	<winsock2.h>
+	<windows.h>
+	<ws2tcpip.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<sys/poll.h>
+
+1512257600 d:\cours esgi\3eme année\1er semestre\projets\projectwebscrapper\projectwebscrapper\webscrapper\ext\curl\include\easy.h
+
+1512257601 d:\cours esgi\3eme année\1er semestre\projets\projectwebscrapper\projectwebscrapper\webscrapper\ext\curl\include\multi.h
+	"curl.h"
+
+1513153299 d:\cours esgi\3eme année\1er semestre\projets\projectwebscrapper\projectwebscrapper\webscrapper\ext\curl\include\typecheck-gcc.h
+
+1572536454 d:\cours esgi\3eme année\1er semestre\projets\projectwebscrapper\projectwebscrapper\webscrapper\sources\headers\structure.h
+
+1572362044 source:d:\cours esgi\3eme année\1er semestre\projets\projectwebscrapper\projectwebscrapper\webscrapper\sources\parseconf.c
+	"headers/header.h"
+	"headers/structure.h"
+
+1572362072 source:d:\cours esgi\3eme année\1er semestre\projets\projectwebscrapper\projectwebscrapper\webscrapper\sources\string.c
+	"headers/header.h"
+	"headers/structure.h"
+
+1572543024 source:d:\cours esgi\3eme année\1er semestre\projets\projectwebscrapper\projectwebscrapper\webscrapper\sources\task.c
+	"headers/header.h"
+	"headers/structure.h"
+
+1572540408 source:d:\cours esgi\3eme année\1er semestre\projets\projectwebscrapper\projectwebscrapper\webscrapper\main.c
+	"sources/headers/header.h"
+	"sources/headers/structure.h"
+
