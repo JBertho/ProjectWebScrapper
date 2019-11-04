@@ -47,6 +47,9 @@
 		<Unit filename="sources/action.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="sources/curl.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="sources/headers/header.h" />
 		<Unit filename="sources/headers/structure.h" />
 		<Unit filename="sources/parseConf.c">
