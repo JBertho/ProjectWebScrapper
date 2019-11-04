@@ -19,6 +19,8 @@ struct Task {
     int  hour;
     int  minute;
     int  second;
+    int total;
+    long lastParse;
     Actions ** actions;
     int  size;
 }; typedef struct Task Task;

@@ -12,8 +12,16 @@
 
 ==
 {name -> Ma tache}
-{hour -> 3}
+{hour -> 0}
 {minute -> 0}
-{second -> 60}
+{second -> 10}
++
+(Mon site, Mon deuxieme site)
+
+==
+{name -> Toutes les 5 minutes}
+{hour -> 0}
+{minute -> 1}
+{second -> 0}
 +
 (Mon site, Mon deuxieme site)

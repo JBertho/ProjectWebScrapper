@@ -5,6 +5,7 @@
 #include "curl.h"
 #include "structure.h"
 #include <ctype.h>
+#include <time.h>
 
 size_t writefunc(void *, size_t , size_t , struct string * );
 void init_string(struct string *);
