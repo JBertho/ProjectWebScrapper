@@ -28,5 +28,11 @@ void addActionToTask(Task * ,Actions * ,int );
 void setTaskActions(Task * ,Actions * ,char * , int ,int );
 void setTask(Task * , char * , Actions * , int , int );
 
+int getLinkSize(int i, char* s);
+char* getLink(int i, char *s,int len);
+int countLink(char *s);
+char** formatLink(char** c);
+void searchLink(char *s);
+
 
 #endif // HEADER_H_INCLUDED

@@ -8,6 +8,46 @@ void test(char * name){
         fputs(name,file);
         fclose(file);
         printf("%s \n",name);
+
+            CURL *curl;
+    CURLcode res;
+    // FILE *fp;
+    // fp = fopen("Photo.png","wb");
+    curl = curl_easy_init();
+    if(curl) {
+    struct string s;
+    init_string(&s);
+
+    curl_easy_setopt(curl, CURLOPT_URL, "http://www.zeperfs.com/");
+    // curl_easy_setopt(curl, CURLOPT_URL, "http://www.zeperfs.com/favicon.png");
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &s);
+    // curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
+
+    /* Perform the request, res will get the return code */
+    res = curl_easy_perform(curl);
+    if(res != CURLE_OK)
+      fprintf(stderr, "curl_easy_perform() failed: %s\n",curl_easy_strerror(res));
+
+
+    // printf("%s",s.ptr);
+    printf("\n");
+    printf("\n");
+    // fclose(fp);
+
+// Recherche de lien //
+
+    searchLink(s.ptr);
+
+////////////////////////
+
+
+
+    /* always cleanup */
+    curl_easy_cleanup(curl);
+    }
+
     }else{
         printf("PROBLEME");
     }

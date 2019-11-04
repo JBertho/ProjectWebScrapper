@@ -188,3 +188,72 @@
 	"sources/headers/header.h"
 	"sources/headers/structure.h"
 
+1572893699 source:c:\users\cheik\c\projectwebscrapper\webscrapper\sources\action.c
+	"headers/header.h"
+	"headers/structure.h"
+
+1572894745 c:\users\cheik\c\projectwebscrapper\webscrapper\sources\headers\header.h
+	<stdio.h>
+	<stdlib.h>
+	"curl.h"
+	"structure.h"
+	<ctype.h>
+	<time.h>
+
+1572893699 c:\users\cheik\c\projectwebscrapper\webscrapper\ext\curl\include\curl.h
+	"curlver.h"
+	"system.h"
+	<stdio.h>
+	<limits.h>
+	<osreldate.h>
+	<sys/types.h>
+	<time.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/select.h>
+	<sys/socket.h>
+	<sys/time.h>
+	<support/SupportDefs.h>
+	"easy.h"
+	"multi.h"
+	"typecheck-gcc.h"
+
+1572893699 c:\users\cheik\c\projectwebscrapper\webscrapper\ext\curl\include\curlver.h
+
+1572893699 c:\users\cheik\c\projectwebscrapper\webscrapper\ext\curl\include\system.h
+	<winsock2.h>
+	<windows.h>
+	<ws2tcpip.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<sys/poll.h>
+
+1572893699 c:\users\cheik\c\projectwebscrapper\webscrapper\ext\curl\include\easy.h
+
+1572893699 c:\users\cheik\c\projectwebscrapper\webscrapper\ext\curl\include\multi.h
+	"curl.h"
+
+1572893699 c:\users\cheik\c\projectwebscrapper\webscrapper\ext\curl\include\typecheck-gcc.h
+
+1572893699 c:\users\cheik\c\projectwebscrapper\webscrapper\sources\headers\structure.h
+
+1572893699 source:c:\users\cheik\c\projectwebscrapper\webscrapper\sources\curl.c
+	"headers/header.h"
+	"headers/structure.h"
+
+1572893699 source:c:\users\cheik\c\projectwebscrapper\webscrapper\sources\parseconf.c
+	"headers/header.h"
+	"headers/structure.h"
+
+1572893699 source:c:\users\cheik\c\projectwebscrapper\webscrapper\sources\string.c
+	"headers/header.h"
+	"headers/structure.h"
+
+1572893699 source:c:\users\cheik\c\projectwebscrapper\webscrapper\sources\task.c
+	"headers/header.h"
+	"headers/structure.h"
+
+1572894212 source:c:\users\cheik\c\projectwebscrapper\webscrapper\main.c
+	"sources/headers/header.h"
+	"sources/headers/structure.h"
+
