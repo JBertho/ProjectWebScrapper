@@ -7,7 +7,7 @@ void test(char * name){
     if(file != NULL){
         fputs(name,file);
         fclose(file);
-        printf("TEST\n");
+        printf("%s \n",name);
     }else{
         printf("PROBLEME");
     }
