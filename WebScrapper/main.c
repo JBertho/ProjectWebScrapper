@@ -17,8 +17,8 @@ void test(char * name){
     if(curl) {
     struct string s;
     init_string(&s);
-
-    curl_easy_setopt(curl, CURLOPT_URL, "http://www.zeperfs.com/");
+    char* lienOrigin = "http://www.leparking.fr/";
+    curl_easy_setopt(curl, CURLOPT_URL, lienOrigin);
     // curl_easy_setopt(curl, CURLOPT_URL, "http://www.zeperfs.com/favicon.png");
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, FALSE);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
@@ -38,7 +38,7 @@ void test(char * name){
 
 // Recherche de lien //
 
-    searchLink(s.ptr);
+    searchLink(s.ptr,lienOrigin);
 
 ////////////////////////
 
