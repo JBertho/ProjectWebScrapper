@@ -49,49 +49,39 @@ char* concat(struct string c, char* lienOrigin){
   int sizeLO = strlen(lienOrigin);
   int len = c.len+sizeLO+1;
   char *res = malloc(sizeof(char) * (len));
-  res[len-1] = '\0';
-    for (int i = 0; i < sizeLO; i++ ){
-      res[i] = lienOrigin[i];
-    }
-    for (int i = 0; i < c.len; i++ ){
-      res[i+sizeLO] = c.ptr[i];
-    }
+  res[0] = '\0';
+  strcpy(res,lienOrigin);
+  strcat(res,c.ptr);
+
 
     return res;
 }
 char* concatSlash(struct string c, char* lienOrigin){
-  int sizeLO = strlen(lienOrigin);
-  int len = c.len+sizeLO+1;
-  char *res = malloc(sizeof(char) * (len));
-  res[len-2] = '\0';
-    for (int i = 0; i < sizeLO-1; i++ ){
-      res[i] = lienOrigin[i];
-    }
-    for (int i = 0; i < c.len; i++ ){
-      res[i+sizeLO-1] = c.ptr[i];
-    }
+    int sizeLO = strlen(lienOrigin);
+    int len = c.len+sizeLO+1;
+    char *res = malloc(sizeof(char) * (len));
+    res[0] = '\0';
+    strcpy(res,lienOrigin);
+    res[strlen(res)-1] = '\0';
+    strcat(res,c.ptr);
 
     return res;
 }
    //struct string* formatLink( struct string* c, int lenTab);
    void formatLink( struct string* c, int lenTab,char* lienOrigin){
-
-   for (int i = 0; i < lenTab; i++){
-
-        if (c[i].ptr[0] != 'h' && c[i].ptr[1] != 't' && c[i].ptr[2] != 't' && c[i].ptr[3] != 'p' ){
-          if (c[i].ptr[0] != '/'){
-            // Faire ça propre alloc function
-          free(c[i].ptr);
-          c[i].ptr =  concat(c[i],lienOrigin);
-          }else{
-          free(c[i].ptr);
-          c[i].ptr =  concatSlash(c[i],lienOrigin);
-          }
-          // printf("Le lien: %s\n", c[i].ptr);
-        }
-
-
-   }
+       for (int i = 0; i < lenTab; i++){
+            if (c[i].ptr[0] != 'h' && c[i].ptr[1] != 't' && c[i].ptr[2] != 't' && c[i].ptr[3] != 'p' ){
+              if (c[i].ptr[0] != '/'){
+                // Faire ça propre alloc function
+              free(c[i].ptr);
+              c[i].ptr =  concat(c[i],lienOrigin);
+              }else{
+              free(c[i].ptr);
+              c[i].ptr =  concatSlash(c[i],lienOrigin);
+              }
+            // printf("Le lien: %s\n", c[i].ptr);
+            }
+       }
 
 
 }
