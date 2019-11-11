@@ -15,6 +15,10 @@ int getLinkSize(int i, char* s){
 char* getLink(int i, char *s,int len){
 
   char* res = malloc(sizeof(char)*(len + 1));
+  if (res == NULL) {
+    fprintf(stderr, "malloc() failed\n");
+    exit(EXIT_FAILURE);
+  }
   res[len] = '\0';
 
 int acc = 0;
@@ -55,6 +59,10 @@ void searchLink(char *s){
     int lenTabChar = countLink(s);
     int j = 0;
     struct string* res2 = malloc(sizeof(struct string) * lenTabChar);
+    if (res2 == NULL) {
+    fprintf(stderr, "malloc() failed\n");
+    exit(EXIT_FAILURE);
+  }
 
     while (s[i] != '\0')
     {

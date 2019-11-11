@@ -10,6 +10,10 @@ char * getProperty(char * line) {
         startPosition += 2;
         size = endPosition - startPosition + 1 ;
         property = malloc(sizeof(char) * size);
+        if(property == NULL){
+            fprintf(stderr, "malloc() failed\n");
+            exit(EXIT_FAILURE);
+        }
         strncpy(property,startPosition,size);
         property[size - 1] = '\0';
         trim(property);
@@ -26,6 +30,10 @@ char * getOption(char * line) {
         startPosition += 1;
         size = endPosition - startPosition + 1 ;
         property = malloc(sizeof(char) * size);
+        if(property == NULL){
+            fprintf(stderr, "malloc() failed\n");
+            exit(EXIT_FAILURE);
+        }
         strncpy(property,startPosition,size);
         property[size - 1] = '\0';
         trim(property);
@@ -40,6 +48,10 @@ char * getTaskAction(char * startString,char type){
     endString = strchr(startString,type);
     size = endString - startString + 1 ;
     property = malloc(sizeof(char) * size);
+    if(property == NULL){
+        fprintf(stderr, "malloc() failed\n");
+        exit(EXIT_FAILURE);
+    }
     strncpy(property,startString,size);
     property[size - 1] = '\0';
     trim(property);

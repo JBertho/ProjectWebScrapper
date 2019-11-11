@@ -22,10 +22,26 @@ void setOptionAndValue(Actions * actions,char * line,int currentActions){
 
         if(actions[currentActions - 1].size == 1){
             actions[currentActions - 1].options = malloc(sizeof(char *) * actions[currentActions - 1].size);
+            if(actions[currentActions - 1].options == NULL){
+                fprintf(stderr, "malloc() failed\n");
+                exit(EXIT_FAILURE);
+            }
             actions[currentActions - 1].values = malloc(sizeof(char *) * actions[currentActions - 1].size);
+            if(actions[currentActions - 1].values == NULL){
+                fprintf(stderr, "malloc() failed\n");
+                exit(EXIT_FAILURE);
+            }
         }else{
             actions[currentActions - 1].options = realloc(actions[currentActions - 1].options,actions[currentActions - 1].size);
+            if(actions[currentActions - 1].options == NULL){
+                fprintf(stderr, "malloc() failed\n");
+                exit(EXIT_FAILURE);
+            }
             actions[currentActions - 1].values = realloc(actions[currentActions - 1].values,actions[currentActions - 1].size);
+            if(actions[currentActions - 1].values == NULL){
+                fprintf(stderr, "malloc() failed\n");
+                exit(EXIT_FAILURE);
+            }
         }
         actions[currentActions - 1].options[actions[currentActions - 1].size - 1] = option;
         actions[currentActions - 1].values[actions[currentActions - 1].size - 1] = value;

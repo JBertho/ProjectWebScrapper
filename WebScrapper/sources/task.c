@@ -39,9 +39,17 @@ void addActionToTask(Task * listTasks,Actions * action,int currentTask){
     if(listTasks[currentTask - 1].size == 0){
         listTasks[currentTask - 1].size = 1;
         listTasks[currentTask - 1].actions = malloc(sizeof(Actions * ) * listTasks[currentTask - 1].size);
+        if(listTasks[currentTask - 1].actions == NULL){
+            fprintf(stderr, "malloc() failed\n");
+            exit(EXIT_FAILURE);
+        }
     }else{
         listTasks[currentTask - 1].size = listTasks[currentTask - 1].size + 1;
         listTasks[currentTask - 1].actions = realloc(listTasks[currentTask - 1].actions, listTasks[currentTask - 1].size);
+        if(listTasks[currentTask - 1].actions == NULL){
+            fprintf(stderr, "realloc() failed\n");
+            exit(EXIT_FAILURE);
+        }
     }
     listTasks[currentTask - 1].actions[listTasks[currentTask - 1].size - 1 ] = action;
 }
