@@ -9,10 +9,9 @@ void test(char * name){
         fclose(file);
         printf("%s \n",name);
 
-            CURL *curl;
+    CURL *curl;
     CURLcode res;
-    // FILE *fp;
-    // fp = fopen("Photo.png","wb");
+
     curl = curl_easy_init();
     if(curl) {
     struct string s;
@@ -35,11 +34,10 @@ void test(char * name){
     printf("\n");
     printf("\n");
     // fclose(fp);
-
 // Recherche de lien //
 
     searchLink(s.ptr,lienOrigin);
-
+    free(s.ptr);
 ////////////////////////
 
 
