@@ -192,7 +192,7 @@
 	"headers/header.h"
 	"headers/structure.h"
 
-1573499019 c:\users\cheik\c\projectwebscrapper\webscrapper\sources\headers\header.h
+1573499356 c:\users\cheik\c\projectwebscrapper\webscrapper\sources\headers\header.h
 	<stdio.h>
 	<stdlib.h>
 	"curl.h"
@@ -238,7 +238,7 @@
 
 1572893699 c:\users\cheik\c\projectwebscrapper\webscrapper\sources\headers\structure.h
 
-1573498796 source:c:\users\cheik\c\projectwebscrapper\webscrapper\sources\curl.c
+1573505543 source:c:\users\cheik\c\projectwebscrapper\webscrapper\sources\curl.c
 	"headers/header.h"
 	"headers/structure.h"
 	<string.h>
@@ -255,7 +255,7 @@
 	"headers/header.h"
 	"headers/structure.h"
 
-1573388254 source:c:\users\cheik\c\projectwebscrapper\webscrapper\main.c
+1573505565 source:c:\users\cheik\c\projectwebscrapper\webscrapper\main.c
 	"sources/headers/header.h"
 	"sources/headers/structure.h"
 

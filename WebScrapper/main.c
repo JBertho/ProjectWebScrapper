@@ -17,7 +17,7 @@ void test(char * name){
     if(curl) {
     struct string s;
     init_string(&s);
-    char* lienOrigin = "http://www.leparking.fr/";
+    char* lienOrigin = "https://www.nikon.com/";
     curl_easy_setopt(curl, CURLOPT_URL, lienOrigin);
     // curl_easy_setopt(curl, CURLOPT_URL, "http://www.zeperfs.com/favicon.png");
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, FALSE);
