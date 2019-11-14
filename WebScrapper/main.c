@@ -9,16 +9,16 @@ void test(char * name){
         fclose(file);
         printf("%s \n",name);
 
-            CURL *curl;
+    CURL *curl;
     CURLcode res;
 
     curl = curl_easy_init();
     if(curl) {
     struct string s;
     init_string(&s);
-
-    curl_easy_setopt(curl, CURLOPT_URL, "http://www.zeperfs.com/");
-
+    char* lienOrigin = "https://www.nikon.com/";
+    curl_easy_setopt(curl, CURLOPT_URL, lienOrigin);
+    // curl_easy_setopt(curl, CURLOPT_URL, "http://www.zeperfs.com/favicon.png");
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, FALSE);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &s);
@@ -31,11 +31,11 @@ void test(char * name){
 
     printf("\n");
     printf("\n");
-
+    // fclose(fp);
 // Recherche de lien //
 
-    searchLink(s.ptr);
-
+    searchLink(s.ptr,lienOrigin);
+    free(s.ptr);
 ////////////////////////
 
 
