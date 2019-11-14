@@ -29,8 +29,6 @@ void test(char * name){
     if(res != CURLE_OK)
       fprintf(stderr, "curl_easy_perform() failed: %s\n",curl_easy_strerror(res));
 
-
-    // printf("%s",s.ptr);
     printf("\n");
     printf("\n");
     // fclose(fp);
@@ -51,6 +49,39 @@ void test(char * name){
     }
 
 }
+void scrapWithDepth(char * string,int currentDepth,int maxDepth){
+
+
+    //requete curl
+    //return du fonction searchLink
+    //lancement de la fonction pour chaque lien
+
+    if(currentDepth < maxDepth){
+        printf("%d",currentDepth);
+        scrapWithDepth(string,currentDepth + 1,maxDepth);
+    }else{
+
+    }
+}
+
+void scrapTask(Task task){
+    printf("%s",task.name);
+    int maxDepthExisting = 0;
+    for(int i = 0; i < task.size;i++){
+        maxDepthExisting = 0;
+        for(int y = 0; y < task.actions[i]->size;y++){
+            if( strstr(task.actions[i]->options[y],"max-depth") && atoi(task.actions[i]->values[y]) > 0){
+                scrapWithDepth(task.actions[i]->url,0,atoi(task.actions[i]->values[y]));
+                maxDepthExisting = 1;
+                break;
+            }
+        }
+        if(maxDepthExisting == 0){
+            printf("Pas de profondeur");
+        }
+    }
+
+}
 
 
 void cron(Task * listTasks,int taskCount){
@@ -66,7 +97,8 @@ void cron(Task * listTasks,int taskCount){
 
             if(timer - listTasks[i].lastParse >= listTasks[i].total){
                 listTasks[i].lastParse = time(NULL);
-                test(listTasks[i].name);
+                //test(listTasks[i].name);
+                scrapTask(listTasks[i]);
             }
     }
 

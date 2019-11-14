@@ -2,7 +2,7 @@
 {name ->                Mon site}
 {url -> http://www.zeperfs.com/}
 +
-{option1 -> value}
+{max-depth -> 3}
 {option2 -> value2}
 =
 {name -> Mon deuxieme site}

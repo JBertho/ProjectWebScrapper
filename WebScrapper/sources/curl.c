@@ -21,7 +21,11 @@ int getLinkSize(int i, char* s){
 char* getLink(int i, char *s,int len){
 
   char* res = malloc(sizeof(char)*(len + 1));
-    res[len] = '\0';
+  if (res == NULL) {
+    fprintf(stderr, "malloc() failed\n");
+    exit(EXIT_FAILURE);
+  }
+  res[len] = '\0';
 
     int acc = 0;
     while(s[i] != '\'' && s[i] != '"'){
