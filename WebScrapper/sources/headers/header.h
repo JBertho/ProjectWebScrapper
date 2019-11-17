@@ -7,11 +7,15 @@
 #include <ctype.h>
 #include <time.h>
 #include <string.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 size_t writefunc(void *, size_t , size_t , struct string * );
 void init_string(struct string *);
 char *trim (char * );
 char majToMin(char );
+void changeSpace(char *);
 
 char * getTaskAction(char * ,char );
 char * getProperty(char * );
@@ -37,5 +41,11 @@ void formatLink( struct string* c, int lenTab,char* lienOrigin);
 struct LinkTab searchLink(char* s, char* lienOrigin);
 char *concatSlash(struct string c, char *lienOrigin);
 char *concat(struct string c, char *lienOrigin);
+struct LinkTab startRequest(char * );
+
+void scrapWithDepth(char * ,int ,int ,struct LinkTab );
+void scrapTask(Task );
+void cron(Task * ,int );
+void versioning(Task task,Actions );
 
 #endif // HEADER_H_INCLUDED
