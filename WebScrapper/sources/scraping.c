@@ -2,27 +2,28 @@
 #include "headers/structure.h"
 
 
-void scrapWithDepth(char * string,int currentDepth,int maxDepth,struct LinkTab linkTab){
+void scrapWithDepth(char * string,int currentDepth,int maxDepth,struct LinkTab linkTab,Actions action){
 
     struct LinkTab refLinkTab = linkTab;
     if(currentDepth < maxDepth){
        if(currentDepth == 0){
-        linkTab = startRequest(string);
+        linkTab = startRequest(string,action);
         currentDepth = currentDepth + 1;
-        scrapWithDepth(string,currentDepth,maxDepth,linkTab);
+        scrapWithDepth(string,currentDepth,maxDepth,linkTab,action);
         }else{
             for(int i = 0; i < refLinkTab.size; i++){
                 string = refLinkTab.link[i].ptr;
-                linkTab = startRequest(string);
-                printf("%s profondeur : %d  taille : %d \n",string, currentDepth,linkTab.size);
-                scrapWithDepth(string,currentDepth + 1,maxDepth,linkTab);
+                linkTab = startRequest(string,action);
+                scrapWithDepth(string,currentDepth + 1,maxDepth,linkTab,action);
             }
         }
     }
 }
 
 void scrapTask(Task task){
-    printf("%s",task.name);
+    time_t timer = 0;
+    timer = time(NULL);
+    printf("%s Debut de la tache : %s \n",ctime(&timer),task.name);
     int maxDepthExisting = 0;
     for(int i = 0; i < task.size;i++){
         maxDepthExisting = 0;
@@ -36,15 +37,16 @@ void scrapTask(Task task){
             if( strstr(task.actions[i]->options[y],"max-depth") && atoi(task.actions[i]->values[y]) > 0){
                 struct LinkTab nullTab;
                 nullTab.size = 0;
-                scrapWithDepth(task.actions[i]->url,0,atoi(task.actions[i]->values[y]),nullTab);
+                scrapWithDepth(task.actions[i]->url,0,atoi(task.actions[i]->values[y]),nullTab,*(task.actions[i]));
                 maxDepthExisting = 1;
                 break;
             }
         }
         if(maxDepthExisting == 0){
-            //SCRAP LE LIEN DE DEPART
+
         }
     }
+    printf("Fin de la tache : %s \n\n",task.name);
 
 }
 

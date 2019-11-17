@@ -17,6 +17,7 @@ char *trim (char * );
 char majToMin(char );
 void changeSpace(char *);
 
+void startParseConf();
 char * getTaskAction(char * ,char );
 char * getProperty(char * );
 char * getOption(char * );
@@ -41,9 +42,9 @@ void formatLink( struct string* c, int lenTab,char* lienOrigin);
 struct LinkTab searchLink(char* s, char* lienOrigin);
 char *concatSlash(struct string c, char *lienOrigin);
 char *concat(struct string c, char *lienOrigin);
-struct LinkTab startRequest(char * );
+struct LinkTab startRequest(char *,Actions );
 
-void scrapWithDepth(char * ,int ,int ,struct LinkTab );
+void scrapWithDepth(char * ,int ,int ,struct LinkTab ,Actions );
 void scrapTask(Task );
 void cron(Task * ,int );
 void versioning(Task task,Actions );
