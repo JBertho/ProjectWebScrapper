@@ -1,6 +1,6 @@
 =
 {name ->                Mon site}
-{url -> http://www.zeperfs.com/}
+{url -> https://www.3pages.fr/}
 +
 {max-depth -> 3}
 {option2 -> value2}
@@ -14,14 +14,14 @@
 {name -> Ma tache}
 {hour -> 0}
 {minute -> 0}
-{second -> 10}
+{second -> 30}
 +
 (Mon site, Mon deuxieme site)
 
 ==
 {name -> Toutes les 5 minutes}
 {hour -> 0}
-{minute -> 1}
+{minute -> 5}
 {second -> 0}
 +
 (Mon site, Mon deuxieme site)
