@@ -51,3 +51,13 @@ char majToMin(char c){
     }
     return c;
 }
+
+void changeSpace(char * string){
+    int i = 0;
+    while(string[i] != '\0'){
+        if(string[i] == ' '){
+            string[i] = '_';
+        }
+        i++;
+    }
+}

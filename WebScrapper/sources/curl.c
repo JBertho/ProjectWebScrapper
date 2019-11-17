@@ -159,3 +159,39 @@ struct LinkTab searchLink(char* s, char* lienOrigin){
     return listLink;
 
 }
+
+struct LinkTab startRequest(char * name){
+
+    CURL *curl;
+    CURLcode res;
+    char * contentType;
+    curl = curl_easy_init();
+    if(curl) {
+        struct string s;
+        init_string(&s);
+        curl_easy_setopt(curl, CURLOPT_URL, name);
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &s);
+
+
+        res = curl_easy_perform(curl);
+        if(res != CURLE_OK)
+          fprintf(stderr, "curl_easy_perform() failed: %s\n",curl_easy_strerror(res));
+
+
+        res = curl_easy_getinfo(curl,CURLINFO_CONTENT_TYPE,&contentType);
+
+        if(res == CURLE_OK && contentType){
+            printf("content type : %s ",contentType);
+        }
+
+        struct LinkTab linktab = searchLink(s.ptr,name);
+        free(s.ptr);
+        curl_easy_cleanup(curl);
+        return linktab;
+    }
+
+    struct LinkTab nullTab;
+    return nullTab;
+}
