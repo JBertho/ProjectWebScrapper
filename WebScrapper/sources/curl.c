@@ -94,25 +94,27 @@ char* concatSlash(struct string c, char* lienOrigin){
 
 }
 
-void searchLink(char* s, char* lienOrigin){
+
+struct LinkTab searchLink(char* s, char* lienOrigin){
     int i = 0;
     struct string res;
     int lenTabChar = countLink(s);
     int j = 0;
     int findBalise = 0;
+    struct LinkTab listLink;
     int size = strlen(s);
-    struct string* listeLien = malloc(sizeof(struct string) * lenTabChar);
-    int linkTabSize = 0;
-
+    listLink.link = malloc(sizeof(struct string) * lenTabChar);
+    listLink.size = 0;
     while (s[i] != '\0')
     {
-      if(findBalise == 0 && ((i+1 < size && s[i] == '<' && s[i + 1] == 'a') || ( i+ 3 < size && s[i] == '<' && s[i + 1] == 'i' && s[i + 2] == 'm' && s[i + 3] == 'g' ))) {
+      s[i] = majToMin(s[i]);
+
+      if(findBalise == 0 && ((i+2 < size && s[i] == '<' && majToMin(s[i + 1]) == 'a' && s[i + 2] == ' ')  || ( i+ 4 < size && s[i] == '<' && majToMin(s[i + 1]) == 'i' && majToMin(s[i + 2]) == 'm' && majToMin(s[i + 3]) == 'g' && s[i + 4] == ' ' ))) {
         findBalise = 1;
       }
 
-      if (findBalise == 1 && i + 4 < size && s[i] == 'h' && s[i + 1] == 'r' && s[i + 2] == 'e' && s[i + 3] == 'f' && s[i + 4] == '=')
+      if (findBalise == 1 && i + 4 < size && majToMin(s[i]) == 'h' && majToMin(s[i + 1]) == 'r' && majToMin(s[i + 2]) == 'e' && majToMin(s[i + 3]) == 'f' && s[i + 4] == '=' )
       {
-        // int len = getLinkSize(i + 6, s);
         res.len = getLinkSize(i + 5, s);
         if(res.len > 0 ){
            res.ptr = malloc(sizeof(char) * (res.len+1));
@@ -120,8 +122,24 @@ void searchLink(char* s, char* lienOrigin){
            if ( (res.len == 1 && strcmp(res.ptr,"#") == 0) || strstr(res.ptr,"javascript") != NULL ){
                 free(res.ptr);
            }else{
-               listeLien[j] = res;
-                linkTabSize++;
+               listLink.link[j] = res;
+                listLink.size++;
+                j++;
+           }
+        }
+        findBalise = 0;
+      }
+      if (findBalise == 1 && i + 3 < size && majToMin(s[i]) == 's' && majToMin(s[i + 1]) == 'r' && majToMin(s[i + 2]) == 'c'  && s[i + 3] == '=' )
+      {
+        res.len = getLinkSize(i + 4, s);
+        if(res.len > 0 ){
+           res.ptr = malloc(sizeof(char) * (res.len+1));
+           res.ptr = getLink(i + 4, s, res.len);
+           if ( (res.len == 1 && strcmp(res.ptr,"#") == 0) || strstr(res.ptr,"javascript") != NULL ){
+                free(res.ptr);
+           }else{
+               listLink.link[j] = res;
+                listLink.size++;
                 j++;
            }
         }
@@ -130,17 +148,14 @@ void searchLink(char* s, char* lienOrigin){
 
       i++;
 }
-
-    formatLink(listeLien,linkTabSize,lienOrigin);
-      for (int i = 0; i < linkTabSize; i++){
-        printf("Le lien: %s", listeLien[i].ptr);
+    formatLink(listLink.link,listLink.size,lienOrigin);
+      for (int i = 0; i < listLink.size; i++){
+        printf("Le lien: %s", listLink.link[i].ptr);
         printf("\n");
       }
 
-      for(int i = 0; i < linkTabSize;i++){
-        free(listeLien[i].ptr);
-      }
 
 
+    return listLink;
 
 }

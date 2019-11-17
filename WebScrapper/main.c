@@ -1,13 +1,13 @@
 #include "sources/headers/header.h"
 #include "sources/headers/structure.h"
 
-void test(char * name){
+struct LinkTab test(char * name){
 
     FILE * file = fopen("resources/text.txt","a+");
     if(file != NULL){
         fputs(name,file);
         fclose(file);
-        printf("%s \n",name);
+        printf(" \n %s \n",name);
 
     CURL *curl;
     CURLcode res;
@@ -16,8 +16,8 @@ void test(char * name){
     if(curl) {
     struct string s;
     init_string(&s);
-    char* lienOrigin = "https://www.nikon.com/";
-    curl_easy_setopt(curl, CURLOPT_URL, lienOrigin);
+    //char* lienOrigin = "https://www.nikon.com/";
+    curl_easy_setopt(curl, CURLOPT_URL, name);
     // curl_easy_setopt(curl, CURLOPT_URL, "http://www.zeperfs.com/favicon.png");
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, FALSE);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
@@ -34,35 +34,43 @@ void test(char * name){
     // fclose(fp);
 // Recherche de lien //
 
-    searchLink(s.ptr,lienOrigin);
+    struct LinkTab linktab = searchLink(s.ptr,name);
     free(s.ptr);
-////////////////////////
-
-
-
-    /* always cleanup */
     curl_easy_cleanup(curl);
+////////////////////////
+    return linktab;
     }
 
     }else{
         printf("PROBLEME");
     }
-
+    struct LinkTab nullTab;
+    nullTab.size = 0;
+    printf("SLT");
+    return nullTab;
 }
-void scrapWithDepth(char * string,int currentDepth,int maxDepth){
+void scrapWithDepth(char * string,int currentDepth,int maxDepth,struct LinkTab linkTab){
 
+    struct LinkTab refLinkTab = linkTab;
+    if(currentDepth < maxDepth){
+       if(currentDepth == 0){
+        linkTab = test(string);
+        currentDepth = currentDepth + 1;
+        scrapWithDepth(string,currentDepth,maxDepth,linkTab);
+        }else{
+            for(int i = 0; i < refLinkTab.size; i++){
+                string = refLinkTab.link[i].ptr;
+                linkTab = test(string);
+                printf("%s profondeur : %d  taille : %d \n",string, currentDepth,linkTab.size);
+                scrapWithDepth(string,currentDepth + 1,maxDepth,linkTab);
+            }
+        }
+    }
+}
 
     //requete curl
     //return du fonction searchLink
     //lancement de la fonction pour chaque lien
-
-    if(currentDepth < maxDepth){
-        printf("%d",currentDepth);
-        scrapWithDepth(string,currentDepth + 1,maxDepth);
-    }else{
-
-    }
-}
 
 void scrapTask(Task task){
     printf("%s",task.name);
@@ -71,13 +79,15 @@ void scrapTask(Task task){
         maxDepthExisting = 0;
         for(int y = 0; y < task.actions[i]->size;y++){
             if( strstr(task.actions[i]->options[y],"max-depth") && atoi(task.actions[i]->values[y]) > 0){
-                scrapWithDepth(task.actions[i]->url,0,atoi(task.actions[i]->values[y]));
+                struct LinkTab nullTab;
+                nullTab.size = 0;
+                scrapWithDepth(task.actions[i]->url,0,atoi(task.actions[i]->values[y]),nullTab);
                 maxDepthExisting = 1;
                 break;
             }
         }
         if(maxDepthExisting == 0){
-            printf("Pas de profondeur");
+            //SCRAP LE LIEN DE DEPART
         }
     }
 

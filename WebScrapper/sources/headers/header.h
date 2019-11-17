@@ -11,6 +11,7 @@
 size_t writefunc(void *, size_t , size_t , struct string * );
 void init_string(struct string *);
 char *trim (char * );
+char majToMin(char );
 
 char * getTaskAction(char * ,char );
 char * getProperty(char * );
@@ -33,7 +34,7 @@ int getLinkSize(int i, char* s);
 char* getLink(int i, char *s,int len);
 int countLink(char *s);
 void formatLink( struct string* c, int lenTab,char* lienOrigin);
-void searchLink(char* s, char* lienOrigin);
+struct LinkTab searchLink(char* s, char* lienOrigin);
 char *concatSlash(struct string c, char *lienOrigin);
 char *concat(struct string c, char *lienOrigin);
 

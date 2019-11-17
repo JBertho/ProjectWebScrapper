@@ -6,6 +6,11 @@ struct string {
   size_t len;
 };
 
+struct LinkTab {
+    struct string * link;
+    int size;
+};
+
 struct Actions {
     char * name;
     char * url;
