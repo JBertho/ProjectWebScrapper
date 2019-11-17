@@ -11,7 +11,7 @@ struct LinkTab test(char * name){
 
     CURL *curl;
     CURLcode res;
-
+    char * contentType;
     curl = curl_easy_init();
     if(curl) {
     struct string s;
@@ -22,6 +22,7 @@ struct LinkTab test(char * name){
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, FALSE);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &s);
+
     // curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
 
     /* Perform the request, res will get the return code */
@@ -29,10 +30,12 @@ struct LinkTab test(char * name){
     if(res != CURLE_OK)
       fprintf(stderr, "curl_easy_perform() failed: %s\n",curl_easy_strerror(res));
 
-    printf("\n");
-    printf("\n");
-    // fclose(fp);
-// Recherche de lien //
+
+    res = curl_easy_getinfo(curl,CURLINFO_CONTENT_TYPE,&contentType);
+
+    if(res == CURLE_OK && contentType){
+        printf("content type : %s ",contentType);
+    }
 
     struct LinkTab linktab = searchLink(s.ptr,name);
     free(s.ptr);
@@ -45,8 +48,6 @@ struct LinkTab test(char * name){
         printf("PROBLEME");
     }
     struct LinkTab nullTab;
-    nullTab.size = 0;
-    printf("SLT");
     return nullTab;
 }
 void scrapWithDepth(char * string,int currentDepth,int maxDepth,struct LinkTab linkTab){
@@ -67,10 +68,6 @@ void scrapWithDepth(char * string,int currentDepth,int maxDepth,struct LinkTab l
         }
     }
 }
-
-    //requete curl
-    //return du fonction searchLink
-    //lancement de la fonction pour chaque lien
 
 void scrapTask(Task task){
     printf("%s",task.name);
@@ -97,8 +94,6 @@ void scrapTask(Task task){
 void cron(Task * listTasks,int taskCount){
     for(int i = 0; i < taskCount; i++){
         listTasks[i].lastParse = time(NULL);
-        printf("%li \n",listTasks[i].lastParse);
-        printf("%d \n",listTasks[i].total);
     }
     long timer = 0;
     while(1){
@@ -107,7 +102,6 @@ void cron(Task * listTasks,int taskCount){
 
             if(timer - listTasks[i].lastParse >= listTasks[i].total){
                 listTasks[i].lastParse = time(NULL);
-                //test(listTasks[i].name);
                 scrapTask(listTasks[i]);
             }
     }
