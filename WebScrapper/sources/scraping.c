@@ -43,7 +43,7 @@ void scrapTask(Task task){
             }
         }
         if(maxDepthExisting == 0){
-
+            startRequest(task.actions[i]->url,*(task.actions[i]));
         }
     }
     printf("Fin de la tache : %s \n\n",task.name);
@@ -78,8 +78,8 @@ void versioning(Task task,Actions action){
     filePath[0] = '\0';
     struct stat st = {0};
 
-    sprintf(filePath,"resources/%s/%s.txt",action.name,task.name);
-    sprintf(directory,"resources/%s",action.name);
+    sprintf(filePath,"resources/versioning/%s/%s.txt",action.name,task.name);
+    sprintf(directory,"resources/versioning/%s",action.name);
     changeSpace(filePath);
     changeSpace(directory);
     if (stat(directory,&st) == -1){
@@ -107,4 +107,78 @@ void versioning(Task task,Actions action){
     free(content);
     free(filePath);
     free(directory);
+}
+
+char *getSiteName(char *siteLink, char *contentType){
+  int i = 0;
+  int j = 0;
+  int k = 0;
+  while (siteLink[j] != '.')
+  {
+    j++;
+  }
+  j++;
+  while (contentType[k] != '/')
+  {
+    k++;
+  }
+  k++;
+  int lenSiteExtension = strlen(contentType) - k;
+  int lenSiteName = strlen(siteLink) - j;
+  char *fullName = malloc(sizeof(char) * (lenSiteName + lenSiteExtension + 1));
+  char *extensionName = malloc(sizeof(char) * (lenSiteExtension + 2));
+  fullName[lenSiteName] = '\0';
+  extensionName[lenSiteExtension] = '\0';
+
+  while (siteLink[i] != '\0')
+  {
+
+    if (siteLink[i] == '.')
+    {
+      siteLink[i] = '_';
+    }
+    if (siteLink[i] == '/')
+    {
+      siteLink[i] = '#';
+    }
+
+    i++;
+  }
+  i = 0;
+  while (siteLink[j] != '\0')
+  {
+    fullName[i] = siteLink[j];
+    j++;
+    i++;
+  }
+  extensionName[0] = '.';
+  i = 1;
+  while (contentType[k] != '\0')
+  {
+    extensionName[i] = contentType[k];
+    k++;
+    i++;
+  }
+  extensionName[i] = '\0';
+  strcat(fullName, extensionName);
+  free(extensionName);
+  return fullName;
+}
+
+void download(char *siteLink, char * contentType,char * content){
+  //printf("%s %s ",contentType,siteLink);
+  char * newName = malloc(sizeof(char) * strlen(siteLink));
+  char * ink = newName;
+  strcpy(newName,siteLink);
+  char * siteName = getSiteName(newName,contentType);
+  printf("%s",siteName);
+  FILE* fp = NULL;
+  fp = fopen(siteName, "a+b");
+  if( fp == NULL){
+    printf("ERREUR OUVERTURE FICHIER");
+  }
+  fclose(fp);
+  fputs(content,fp);
+  //free(ink);
+  free(siteName);
 }

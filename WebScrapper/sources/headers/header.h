@@ -49,4 +49,7 @@ void scrapTask(Task );
 void cron(Task * ,int );
 void versioning(Task task,Actions );
 
+void download(char *, char *,char * );
+char *getSiteName(char *, char *);
+
 #endif // HEADER_H_INCLUDED

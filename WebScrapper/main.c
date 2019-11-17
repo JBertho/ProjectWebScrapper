@@ -24,7 +24,16 @@ int main()
     }while(choice < 1 || choice > 2);
 
     if(choice == 1){
+        system("cls");
+        printf("====================================== \n");
+        printf("              WEB SCRAPPER             \n");
+        printf("====================================== \n");
+        printf("\n\n");
+        printf("======================== \n");
+        printf("======= EN COURS =======\n");
+        printf("======================== \n");
         startParseConf();
     }
+
     return 0;
 }

@@ -55,6 +55,9 @@
 		<Unit filename="sources/parseConf.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="sources/scraping.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="sources/string.c">
 			<Option compilerVar="CC" />
 		</Unit>

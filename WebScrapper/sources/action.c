@@ -43,6 +43,22 @@ void setOptionAndValue(Actions * actions,char * line,int currentActions){
                 exit(EXIT_FAILURE);
             }
         }
+        if(strstr(option,"max-depth")){
+            for(int z = 0; z < strlen(value); z++){
+                if(value[z] < '0' || value[z] > '9'){
+                    printf("\nL'option max-depth doit avoir seulement des chiffres entre 0 et 20");
+                    exit(EXIT_FAILURE);
+                }
+            }
+            if(atoi(value) < 0 || atoi(value) > 20 ){
+                printf("\nLa profondeur doit etre compris entre 0 et 20");
+                exit(EXIT_FAILURE);
+            }
+        }
+        if(strstr(option,"versioning") && (!strstr(value,"on") && !strstr(value,"off"))){
+           printf("\nLe versioning doit avoir comme valeur 'on' ou 'off'");
+           exit(EXIT_FAILURE);
+        }
         actions[currentActions - 1].options[actions[currentActions - 1].size - 1] = option;
         actions[currentActions - 1].values[actions[currentActions - 1].size - 1] = value;
      }

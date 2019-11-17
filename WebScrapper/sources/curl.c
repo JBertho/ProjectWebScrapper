@@ -189,22 +189,23 @@ struct LinkTab startRequest(char * name,Actions action){
 
 
         res = curl_easy_perform(curl);
-        if(res != CURLE_OK)
-          fprintf(stderr, "curl_easy_perform() failed: %s\n",curl_easy_strerror(res));
-
-
-        res = curl_easy_getinfo(curl,CURLINFO_CONTENT_TYPE,&contentType);
-
-        if(res == CURLE_OK && contentType){
-                if(checkContentType(contentType,action) == 1){
-                    printf("ON TELECHARGE CA \n");
-                }
+        if(res != CURLE_OK){
+            fprintf(stderr, "curl_easy_perform() failed: %s\n",curl_easy_strerror(res));
         }
 
-        struct LinkTab linktab = searchLink(s.ptr,name);
-        free(s.ptr);
-        curl_easy_cleanup(curl);
-        return linktab;
+        if(res == CURLE_OK){
+            res = curl_easy_getinfo(curl,CURLINFO_CONTENT_TYPE,&contentType);
+            if(res == CURLE_OK && contentType){
+                    if(checkContentType(contentType,action) == 1){
+                        //download(name,contentType,s.ptr);
+                    }
+            }
+
+            struct LinkTab linktab = searchLink(s.ptr,name);
+            free(s.ptr);
+            curl_easy_cleanup(curl);
+            return linktab;
+        }
     }
 
     struct LinkTab nullTab;
