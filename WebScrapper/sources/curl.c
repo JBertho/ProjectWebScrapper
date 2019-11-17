@@ -147,20 +147,33 @@ struct LinkTab searchLink(char* s, char* lienOrigin){
       }
 
       i++;
-}
+    }
     formatLink(listLink.link,listLink.size,lienOrigin);
-      for (int i = 0; i < listLink.size; i++){
-        printf("Le lien: %s", listLink.link[i].ptr);
-        printf("\n");
-      }
-
-
 
     return listLink;
 
 }
+int checkContentType(char * contentType, Actions action){
+    int i = 0;
+    while(contentType[i] != '\0'){
+        if(contentType[i] == ';'){
+            contentType[i] = '\0';
+            break;
+        }
+        i++;
+    }
+    contentType = trim(contentType);
+    for(int y = 0; y < action.size;y++){
+        if(strstr(action.options[y],"type")){
+            if(strstr(action.values[y],contentType) != NULL){
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
 
-struct LinkTab startRequest(char * name){
+struct LinkTab startRequest(char * name,Actions action){
 
     CURL *curl;
     CURLcode res;
@@ -183,7 +196,9 @@ struct LinkTab startRequest(char * name){
         res = curl_easy_getinfo(curl,CURLINFO_CONTENT_TYPE,&contentType);
 
         if(res == CURLE_OK && contentType){
-            printf("content type : %s ",contentType);
+                if(checkContentType(contentType,action) == 1){
+                    printf("ON TELECHARGE CA \n");
+                }
         }
 
         struct LinkTab linktab = searchLink(s.ptr,name);
